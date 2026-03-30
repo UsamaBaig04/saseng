@@ -59,6 +59,10 @@ function App() {
                 element={<Subcategory toggleModal={toggleModal} />}
               />
               <Route
+                path="/subcategory/:encodedName/:subcatName"
+                element={<Subcategory toggleModal={toggleModal} />}
+              />
+              <Route
                 path="/cart"
                 element={<Cart handleContactClick={handleContactClick} />}
               />

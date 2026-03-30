@@ -22,11 +22,12 @@ export const Subcategory = ({ toggleModal }) => {
   const [loadingMore, setLoadingMore] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [addedProducts, setAddedProducts] = useState([]);
+  const [selectedSubcategory, setSelectedSubcategory] = useState(null);
   const { addToCart } = useCart();
   const navigate = useNavigate();
 
   // Filtering function
-  const filterDataByCategory = () => {
+  const filterDataByCategoryOG = () => {
     const dataFiltered = dropdownProducts.filter((prod) =>
       prod.categories.some(
         (cat) => cat.name === decodeURIComponent(encodedName)
@@ -35,13 +36,34 @@ export const Subcategory = ({ toggleModal }) => {
     setFilterData(dataFiltered);
     console.log('filtered data is',dataFiltered)
   };
+  const normalize = (str) => str?.toLowerCase().trim();
 
+const filterDataByCategory = () => {
+  let dataFiltered = dropdownProducts;
+
+  // ❗ ONLY filter by subcategory (because API only has this)
+  if (selectedSubcategory) {
+    dataFiltered = dataFiltered.filter((prod) =>
+      prod.categories.some(
+        (cat) => normalize(cat.name) === normalize(selectedSubcategory)
+      )
+    );
+  }
+
+  setFilterData(dataFiltered);
+};
   useEffect(() => {
     if (dropdownProducts.length > 0) {
       filterDataByCategory();
       setLoading(false);
     }
-  }, [dropdownProducts, encodedName]);
+  }, [dropdownProducts, encodedName, selectedSubcategory]);
+
+ useEffect(() => {
+  if (subcategories.length > 0) {
+    setSelectedSubcategory(subcategories[0]);
+  }
+}, [encodedName]);
 
   // useEffect(() => {
   //   window.scrollTo({ top: 0});
@@ -82,6 +104,19 @@ export const Subcategory = ({ toggleModal }) => {
     product.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
+  const categoryMap = {
+  "Switch Gear": ["ABB DCS", "SIEMENS SWITCHGEAR"],
+  "Cable": ["INOVANCE CABLE"],
+  "VFD": ["INOVANCE VFD"],
+  "HMI": ["INOVANCE HMI"],
+  "PLC": ["INOVANCE PLC"],
+  "Servo": ["INOVANCE SERVO"],
+  "Others": ["KLEMSAN", "REDLION"]
+};
+const decodedCategory = decodeURIComponent(encodedName);
+
+const subcategories = categoryMap[decodedCategory] || [];
+console.log("subcategories is>>>>>>>>>",subcategories)
   const renderItem = filteredAndSearchedData
     .slice(0, visibleCount)
     .map((product, index) => {
@@ -89,8 +124,9 @@ export const Subcategory = ({ toggleModal }) => {
       const convertedPrice = convertPrice(product.price, currencyTo);
       return (
         // card Container
-
+        
         <div className=" min-h-[145px] h-[20vh] sm:h-[22vh] md:min-h-[180px] md:h-[16vh] lg:min-h-[180px] lg:h-[22vh] xl:min-h-[200px] xl:h-[18vh]  border-2 w-full md:w-full bg-white border-gray-300 px-2 py-2 rounded-lg shadow-lg  xl:shadow-xl ">
+        
           <div className="flex h-[100%] ">
             <div className="w-[30%] h-[100%]">
               <img
@@ -214,6 +250,32 @@ export const Subcategory = ({ toggleModal }) => {
           </div>
         </div>
       </div>
+       <div className="flex flex-wrap gap-3 justify-center my-4">
+  {subcategories.map((sub, index) => (
+    <button
+      key={index}
+      onClick={() => {
+  console.log("Selected Subcategory:", sub);
+  setSelectedSubcategory(sub);
+}}
+      className={`px-4 py-2 rounded-full border font-semibold transition ${
+        selectedSubcategory === sub
+          ? "bg-red-600 text-white"
+          : "bg-white text-gray-700 hover:bg-red-100"
+      }`}
+    >
+      {sub}
+    </button>
+  ))}
+
+  {/* Reset button */}
+  {/* <button
+    onClick={() => setSelectedSubcategory(null)}
+    className="px-4 py-2 rounded-full border bg-gray-200"
+  >
+    All
+  </button> */}
+</div>
       <div className="grid w-full 2xl:!px-48 xl:!px-40 bg-white/95  md:grid-cols-2 px-4 py-4 gap-y-4 md:gap-y-6 md:gap-x-6 md:justify-center md:items-center">
         {renderItem}
       </div>

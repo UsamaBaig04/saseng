@@ -50,7 +50,7 @@ export const ProductsProvider = ({ children }) => {
 
         setCategories(response.data);
 
-        console.log("Fetched categories from API.");
+        console.log("Fetched categories from API.",response.data);
     } catch (error) {
         console.error("Error fetching categories:", error);
     } finally {
