@@ -9,21 +9,31 @@ export const Products = () => {
   const navigate = useNavigate();
   // Mock data - replace with your actual useProducts hook
   // const loading = false; // Set to true to see loading state
-  // const categories = [
-  //     { id: 1, name: "ABB DCS", image: { src: "/assets/abb-dcs.jpg" } },
-  //     { id: 2, name: "Industrial Automation", image: { src: "/assets/automation.jpg" } },
-  //     { id: 3, name: "Control Systems", image: { src: "/assets/control.jpg" } },
-  //     { id: 4, name: "Safety Equipment", image: { src: "/assets/safety.jpg" } },
-  //     { id: 5, name: "Electrical Components", image: { src: "/assets/electrical.jpg" } },
-  //     { id: 6, name: "Sensors & Actuators", image: { src: "/assets/sensors.jpg" } },
-  //     { id: 7, name: "Power Systems", image: { src: "/assets/power.jpg" } },
-  //     { id: 8, name: "Instrumentation", image: { src: "/assets/instruments.jpg" } },
-  //     { id: 9, name: "Process Control", image: { src: "/assets/process.jpg" } },
-  //     { id: 10, name: "Communication Modules", image: { src: "/assets/communication.jpg" } },
-  //     { id: 11, name: "Human Machine Interface", image: { src: "/assets/hmi.jpg" } },
-  //     { id: 12, name: "Variable Frequency Drives", image: { src: "/assets/drives.jpg" } },
-  // ];
+  const categoriess = [
+      { id: 1, name: "Switch Gear", image: { src: "/assets/automation.jpg" } },
+      { id: 2, name: "Cable", image: { src: "/assets/WC banner.png" } },
+      { id: 3, name: "VFD", image: { src: "/assets/motors Banner.png" } },
+      { id: 4, name: "HMI", image: { src: "/assets/iotBanner.png" } },
+      { id: 5, name: "Kyand", image: { src: "/assets/integration.jpg" } },
+      { id: 6, name: "Helmolz", image: { src: "/assets/pc based.jpg" } },
+      // { id: 7, name: "Power Systems", image: { src: "/assets/power.jpg" } },
+      // { id: 8, name: "Instrumentation", image: { src: "/assets/instruments.jpg" } },
+      // { id: 9, name: "Process Control", image: { src: "/assets/process.jpg" } },
+      // { id: 10, name: "Communication Modules", image: { src: "/assets/communication.jpg" } },
+      // { id: 11, name: "Human Machine Interface", image: { src: "/assets/hmi.jpg" } },
+      // { id: 12, name: "Variable Frequency Drives", image: { src: "/assets/drives.jpg" } },
+  ];
 
+  // categoryMap.js
+const categoryMap = {
+  "Switch Gear": ["ABB DCS", "SIEMENS SWITCHGEAR"],
+  "Cable": ["INOVANCE CABLE"],
+  "VFD": ["INOVANCE VFD"],
+  "HMI": ["INOVANCE HMI"],
+  "PLC": ["INOVANCE PLC"],
+  "Servo": ["INOVANCE SERVO"],
+  "Others": ["KLEMSAN", "REDLION"]
+};
   // Enhanced Loading Component
   
   const LoadingState = () => (
@@ -78,6 +88,7 @@ export const Products = () => {
   const handleCategoryClick = (categoryName) => {
     const encodedName = encodeURIComponent(categoryName);
     navigate(`/subcategory/${encodedName}`);
+    // navigate(`/${encodedName}`);
     console.log(`Navigating to: /subcategory/${encodedName}`);
     // Replace with your navigation logic
     // navigate(`/subcategory/${encodedName}`);
@@ -143,8 +154,8 @@ export const Products = () => {
 
         {/* Categories Grid */}
         <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5  gap-4 sm:gap-6 lg:gap-8">
-          {categories &&
-            categories.map((product) => {
+          {categoriess &&
+            categoriess.map((product) => {
               const category = product.name;
 
               return (
