@@ -1,0 +1,38 @@
+.carouselContainer{
+    display: flex;
+   margin:0 10px;
+    width: 100%;
+    margin-bottom: 2%;
+    
+}
+
+.carousel{
+    width: 100%;
+  /* height: 300px; */
+  display: flex;
+}
+
+hr {
+    margin: 30px 0; 
+    border: 5px solid #ddd; 
+  }
+  
+  .carouselDivider {
+    border-left: 1px ; 
+    height: 400px; 
+    /* margin: 0 7px;  */
+  }
+  
+  @media (max-width: 480px) {
+    .carouselContainer{
+      background-color: rebeccapurple;
+      width:100%;
+      height: 20vh;
+      display: flex;
+    }
+ .carouselImage{
+  width:100%;
+  height: 100%;
+  object-fit: cover;
+}
+  }

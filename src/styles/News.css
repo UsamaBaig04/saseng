@@ -1,0 +1,43 @@
+
+.news-container {
+    display: flex;
+    flex-direction: row; 
+    background-color: #f5f5f5;
+  }
+  
+  .news-block {
+    width: 200px; 
+    height: 250px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 25px;
+    margin-top: 20px;
+    margin-right: 50px;
+    margin-left: 50px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: white;
+  }
+
+  .news-block::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%; /* Line width */
+    height: 2px; /* Line thickness */
+    /* background-color: red; Red color */
+}
+  
+  .news-block:last-child {
+    margin-right: 0;
+  }
+  
+  .news-block h3 {
+    margin-top: 0;
+  }
+  
+  .news-block p {
+    margin-bottom: 0;
+  }
+  
