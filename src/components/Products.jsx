@@ -10,12 +10,12 @@ export const Products = () => {
   // Mock data - replace with your actual useProducts hook
   // const loading = false; // Set to true to see loading state
   const categoriess = [
-      { id: 1, name: "Switch Gear", image: { src: "/assets/automation.jpg" } },
-      { id: 2, name: "Cable", image: { src: "/assets/WC banner.png" } },
-      { id: 3, name: "VFD", image: { src: "/assets/motors Banner.png" } },
-      { id: 4, name: "HMI", image: { src: "/assets/iotBanner.png" } },
-      { id: 5, name: "Kyand", image: { src: "/assets/integration.jpg" } },
-      { id: 6, name: "Helmolz", image: { src: "/assets/pc based.jpg" } },
+      { id: 1, name: "Switch Gear", image: { src: "/assets/switchgear.jpg" } },
+      { id: 2, name: "Cable", image: { src: "/assets/cable.jpg" } },
+      { id: 3, name: "VFD", image: { src: "/assets/INOVANCE_VFD_26.jpg" } },
+      { id: 4, name: "HMI", image: { src: "/assets/HMI.jpg" } },
+      { id: 5, name: "Kyland", image: { src: "/assets/Kyland12.jpg" } },
+      { id: 6, name: "Helmolz", image: { src: "/assets/helmolz.png" } },
       // { id: 7, name: "Power Systems", image: { src: "/assets/power.jpg" } },
       // { id: 8, name: "Instrumentation", image: { src: "/assets/instruments.jpg" } },
       // { id: 9, name: "Process Control", image: { src: "/assets/process.jpg" } },
@@ -26,7 +26,7 @@ export const Products = () => {
 
   // categoryMap.js
 const categoryMap = {
-  "Switch Gear": ["ABB DCS", "SIEMENS SWITCHGEAR"],
+  "Switch Gear": ["ABB SWITCHGEAR", "SIEMENS SWITCHGEAR"],
   "Cable": ["INOVANCE CABLE"],
   "VFD": ["INOVANCE VFD"],
   "HMI": ["INOVANCE HMI"],
@@ -85,14 +85,26 @@ const categoryMap = {
     return <LoadingState />;
   }
 
-  const handleCategoryClick = (categoryName) => {
+  /* const handleCategoryClick = (categoryName) => {
     const encodedName = encodeURIComponent(categoryName);
     navigate(`/subcategory/${encodedName}`);
     // navigate(`/${encodedName}`);
     console.log(`Navigating to: /subcategory/${encodedName}`);
     // Replace with your navigation logic
     // navigate(`/subcategory/${encodedName}`);
-  };
+  }; */
+
+// Ak
+  const handleCategoryClick = (categoryName) => {
+  const encodedName = encodeURIComponent(categoryName);
+
+  navigate(`/subcategory/${encodedName}`, {
+    state: {
+      subcategories: categoryMap[categoryName] || []
+    }
+  });
+};
+
 
   const Counter = ({ target }) => {
   const [count, setCount] = useState(0);
@@ -153,7 +165,8 @@ const categoryMap = {
         </div>
 
         {/* Categories Grid */}
-        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5  gap-4 sm:gap-6 lg:gap-8">
+        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6  gap-4 sm:gap-6 lg:gap-8 ">
+          {/* <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3  gap-4"> */}
           {categoriess &&
             categoriess.map((product) => {
               const category = product.name;
@@ -167,6 +180,7 @@ const categoryMap = {
                   <div className="bg-white rounded-2xl shadow-lg hover:shadow-2xl overflow-hidden border border-gray-100 transition-all duration-300 group-hover:border-red-200">
                     {/* Image Container */}
                     <div className="relative aspect-square overflow-hidden ">
+                      
                       <img
                         src={product.image?.src || "/assets/defaultImage.jpg"}
                         alt={product.name || "Product Image"}
