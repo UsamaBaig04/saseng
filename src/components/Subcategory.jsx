@@ -59,9 +59,16 @@ const filterDataByCategory = () => {
     }
   }, [dropdownProducts, encodedName, selectedSubcategory]);
 
- useEffect(() => {
+//  useEffect(() => {
+//   if (subcategories.length > 0) {
+//     setSelectedSubcategory(subcategories[0]);
+//   }
+// }, [encodedName]);
+
+// AK
+useEffect(() => {
   if (subcategories.length > 0) {
-    setSelectedSubcategory(subcategories[0]);
+    setSelectedSubcategory(subcategories[0].value);
   }
 }, [encodedName]);
 
@@ -104,14 +111,16 @@ const filterDataByCategory = () => {
     product.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  const categoryMap = {
-  "Switch Gear": ["ABB DCS", "SIEMENS SWITCHGEAR"],
-  "Cable": ["INOVANCE CABLE"],
-  "VFD": ["INOVANCE VFD"],
-  "HMI": ["INOVANCE HMI"],
-  "PLC": ["INOVANCE PLC"],
-  "Servo": ["INOVANCE SERVO"],
-  "Others": ["KLEMSAN", "REDLION"]
+  // AK
+const categoryMap = {
+  "Switch Gear": [
+    { label: "ABB Switchgear", value: "ABB DCS" },
+    { label: "Siemens Switchgear", value: "SIEMENS SWITCHGEAR" },
+    // { label: "Switchgear Bhima Koregaon", value: "SWITCHGEAR BHIMA KOREGAON" }
+  ],
+  "Cable": [{ label: "INOVANCE CABLE", value: "INOVANCE CABLE" }],
+  "VFD": [{ label: "INOVANCE VFD", value: "INOVANCE VFD" }],
+  "HMI": [{ label: "INOVANCE HMI", value: "INOVANCE HMI" }],
 };
 const decodedCategory = decodeURIComponent(encodedName);
 
@@ -251,7 +260,7 @@ console.log("subcategories is>>>>>>>>>",subcategories)
         </div>
       </div>
        <div className="flex flex-wrap gap-3 justify-center my-4">
-  {subcategories.map((sub, index) => (
+  {/* {subcategories.map((sub, index) => (
     <button
       key={index}
       onClick={() => {
@@ -266,8 +275,22 @@ console.log("subcategories is>>>>>>>>>",subcategories)
     >
       {sub}
     </button>
-  ))}
+  ))} */}
 
+{/* Ak */}
+{subcategories.map((sub, index) => (
+  <button
+    key={index}
+    onClick={() => setSelectedSubcategory(sub.value)}
+    className={`px-4 py-2 rounded-full border font-semibold ${
+      selectedSubcategory === sub.value
+        ? "bg-red-600 text-white"
+        : "bg-white text-gray-700 hover:bg-red-100"
+    }`}
+  >
+    {sub.label}
+  </button>
+))}
   {/* Reset button */}
   {/* <button
     onClick={() => setSelectedSubcategory(null)}
