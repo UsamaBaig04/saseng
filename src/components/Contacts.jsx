@@ -143,7 +143,7 @@ export const Contacts = ({onClose}) => {
                       Email
                     </h3>
                     <p className="text-gray-600 mt-1">
-                      eshal@sasnextgen.com
+                      eshal@sasnextgen.comnpm
                     </p>
                     <p className="text-gray-600">We'll respond within 24hrs</p>
                   </div>

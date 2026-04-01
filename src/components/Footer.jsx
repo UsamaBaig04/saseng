@@ -139,7 +139,7 @@ export const Footer = () => {
             <div className="flex items-center space-x-2">
               <Copyright className="text-gray-400" />
               <p className="text-gray-400 text-sm">
-                2024 SAS Engineering. All Rights Reserved.
+                2026 SAS Engineering. All Rights Reserved.
               </p>
             </div>
             <div className="flex items-center space-x-6 text-xs text-gray-500">

@@ -7,12 +7,12 @@ import { Products } from './Products'
 import { Modal } from './Modal'
 import { AboutUs } from './AboutUs'
 
-export const Router = () => {
+export const Router = ({handleContactClick}) => {
   return (
     <div>
         {/* <CarouselSlider/> */}
       {/* <AboutUs/> */}
-        <Products/>
+        <Products handleContactClick={handleContactClick}/>
         <Brands/>
        
     </div>

@@ -3,7 +3,7 @@ import { Package, ArrowRight, Loader2 } from "lucide-react";
 import { useProducts } from "../ProductsProvider";
 import { useNavigate } from "react-router-dom";
 import { useInView } from 'react-intersection-observer';
-export const Products = () => {
+export const Products = ({handleContactClick}) => {
   const { categories, loading } = useProducts();
   const { ref, inView } = useInView({ triggerOnce: true });
   const navigate = useNavigate();
@@ -15,7 +15,7 @@ export const Products = () => {
       { id: 3, name: "VFD", image: { src: "/assets/INOVANCE_VFD_26.jpg" } },
       { id: 4, name: "HMI", image: { src: "/assets/HMI.jpg" } },
       { id: 5, name: "Kyland", image: { src: "/assets/Kyland12.jpg" } },
-      { id: 6, name: "Helmolz", image: { src: "/assets/helmolz.png" } },
+      { id: 6, name: "Helmholz", image: { src: "/assets/helmolz.png" } },
       // { id: 7, name: "Power Systems", image: { src: "/assets/power.jpg" } },
       // { id: 8, name: "Instrumentation", image: { src: "/assets/instruments.jpg" } },
       // { id: 9, name: "Process Control", image: { src: "/assets/process.jpg" } },
@@ -26,13 +26,26 @@ export const Products = () => {
 
   // categoryMap.js
 const categoryMap = {
-  "Switch Gear": ["ABB SWITCHGEAR", "SIEMENS SWITCHGEAR"],
-  "Cable": ["INOVANCE CABLE"],
-  "VFD": ["INOVANCE VFD"],
-  "HMI": ["INOVANCE HMI"],
-  "PLC": ["INOVANCE PLC"],
-  "Servo": ["INOVANCE SERVO"],
-  "Others": ["KLEMSAN", "REDLION"]
+  "Switch Gear": [
+    { label: "ABB Switchgear", value: "ABB DCS" },
+    { label: "Siemens Switchgear", value: "SIEMENS SWITCHGEAR" },
+    // { label: "Switchgear Bhima Koregaon", value: "SWITCHGEAR BHIMA KOREGAON" }
+  ],
+  "Cable": [{ label: "INOVANCE CABLE", value: "INOVANCE CABLE" },
+    { label: "ABB CABLE", value: "ABB CABLE" }
+  ],
+  "VFD": [{ label: "INOVANCE VFD", value: "INOVANCE VFD" },
+    {label:"ABB VFD", value: "ABB VFD"}
+  ],
+  "HMI": [{ label: "INOVANCE HMI", value: "INOVANCE HMI" },
+      {label:"ABB HMI", value: "ABB HMI"}
+  ],
+  "Kyland": [{ label: "IPC", value: "KYLAND IPC" },
+      // {label:"ABB HMI", value: "ABB HMI"}
+  ],
+   "Helhmholz": [
+      {label:"Profinet", value: "PROFINET"}
+  ],
 };
   // Enhanced Loading Component
   
@@ -241,7 +254,8 @@ const categoryMap = {
               Our engineering experts are ready to help you find the perfect
               industrial solution for your specific requirements.
             </p>
-            <button className="bg-white text-red-700 hover:bg-red-50 px-8 py-4 rounded-xl font-bold text-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 inline-flex items-center space-x-2">
+            <button className="bg-white text-red-700 hover:bg-red-50 px-8 py-4 rounded-xl font-bold text-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 inline-flex items-center space-x-2"
+             onClick={() => handleContactClick([""])}>
               <span>Contact Our Experts</span>
               <ArrowRight className="w-5 h-5" />
             </button>

@@ -53,10 +53,10 @@ function App() {
 
           <main className="flex-grow w-full ">
             <Routes>
-              <Route path="/" element={<Router />} />
+              <Route path="/" element={<Router handleContactClick={handleContactClick}/>} />
               <Route
                 path="/subcategory/:encodedName"
-                element={<Subcategory toggleModal={toggleModal} />}
+                element={<Subcategory toggleModal={toggleModal} handleContactClick={handleContactClick} />}
               />
               <Route
                 path="/subcategory/:encodedName/:subcatName"

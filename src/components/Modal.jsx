@@ -50,33 +50,47 @@ export const Modal = ({ message, onClose }) => {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    const validationErrors = validate();
-    if (Object.keys(validationErrors).length > 0) {
-      setErrors(validationErrors);
-      return;
-    }
+  e.preventDefault();
 
-    setIsSubmitting(true);
-    try {
-      // Simulate API call - replace with your actual endpoint
-      await new Promise(resolve => setTimeout(resolve, 2000));
-      
+  const validationErrors = validate();
+  if (Object.keys(validationErrors).length > 0) {
+    setErrors(validationErrors);
+    return;
+  }
+
+  setIsSubmitting(true);
+
+  try {
+    // const response = await fetch("https://formspree.io/f/xyyroond", {
+    const response = await fetch("https://formspree.io/f/mpqolpwp", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    });
+
+    if (response.ok) {
       console.log("Form submitted successfully", formData);
-      setIsSuccess(true);
-      
-      // Close modal after 2 seconds
+      // console.alert("Form Submitted successfully")
+      setIsSuccess(true); // ✅ keep success UI from first function
+
+      // ✅ close modal after 2 sec (like your first function)
       setTimeout(() => {
         onClose();
       }, 2000);
-      
-    } catch (error) {
-      console.error("Form submission error", error);
+    } else {
+      console.error("Form submission error");
       setErrors({ submit: "Failed to send message. Please try again." });
-    } finally {
-      setIsSubmitting(false);
     }
-  };
+  } catch (error) {
+    console.error("Form submission error", error);
+    setErrors({ submit: "Something went wrong. Please try again." });
+  } finally {
+    setIsSubmitting(false);
+  }
+};
+
   useEffect(() => {
   lockScroll();
   return () => unlockScroll();

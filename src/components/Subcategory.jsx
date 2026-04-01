@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import Dropdown from "react-dropdown";
 import { MdOutlineSearch } from "react-icons/md";
 
-export const Subcategory = ({ toggleModal }) => {
+export const Subcategory = ({ toggleModal, handleContactClick }) => {
   const {
     categories,
     dropdownProducts,
@@ -30,28 +30,28 @@ export const Subcategory = ({ toggleModal }) => {
   const filterDataByCategoryOG = () => {
     const dataFiltered = dropdownProducts.filter((prod) =>
       prod.categories.some(
-        (cat) => cat.name === decodeURIComponent(encodedName)
-      )
+        (cat) => cat.name === decodeURIComponent(encodedName),
+      ),
     );
     setFilterData(dataFiltered);
-    console.log('filtered data is',dataFiltered)
+    console.log("filtered data is", dataFiltered);
   };
   const normalize = (str) => str?.toLowerCase().trim();
 
-const filterDataByCategory = () => {
-  let dataFiltered = dropdownProducts;
+  const filterDataByCategory = () => {
+    let dataFiltered = dropdownProducts;
 
-  // ❗ ONLY filter by subcategory (because API only has this)
-  if (selectedSubcategory) {
-    dataFiltered = dataFiltered.filter((prod) =>
-      prod.categories.some(
-        (cat) => normalize(cat.name) === normalize(selectedSubcategory)
-      )
-    );
-  }
+    // ❗ ONLY filter by subcategory (because API only has this)
+    if (selectedSubcategory) {
+      dataFiltered = dataFiltered.filter((prod) =>
+        prod.categories.some(
+          (cat) => normalize(cat.name) === normalize(selectedSubcategory),
+        ),
+      );
+    }
 
-  setFilterData(dataFiltered);
-};
+    setFilterData(dataFiltered);
+  };
   useEffect(() => {
     if (dropdownProducts.length > 0) {
       filterDataByCategory();
@@ -59,18 +59,18 @@ const filterDataByCategory = () => {
     }
   }, [dropdownProducts, encodedName, selectedSubcategory]);
 
-//  useEffect(() => {
-//   if (subcategories.length > 0) {
-//     setSelectedSubcategory(subcategories[0]);
-//   }
-// }, [encodedName]);
+  //  useEffect(() => {
+  //   if (subcategories.length > 0) {
+  //     setSelectedSubcategory(subcategories[0]);
+  //   }
+  // }, [encodedName]);
 
-// AK
-useEffect(() => {
-  if (subcategories.length > 0) {
-    setSelectedSubcategory(subcategories[0].value);
-  }
-}, [encodedName]);
+  // AK
+  useEffect(() => {
+    if (subcategories.length > 0) {
+      setSelectedSubcategory(subcategories[0].value);
+    }
+  }, [encodedName]);
 
   // useEffect(() => {
   //   window.scrollTo({ top: 0});
@@ -108,24 +108,38 @@ useEffect(() => {
   };
 
   const filteredAndSearchedData = filterData.filter((product) =>
-    product.name.toLowerCase().includes(searchTerm.toLowerCase())
+    product.name.toLowerCase().includes(searchTerm.toLowerCase()),
   );
 
   // AK
-const categoryMap = {
-  "Switch Gear": [
-    { label: "ABB Switchgear", value: "ABB DCS" },
-    { label: "Siemens Switchgear", value: "SIEMENS SWITCHGEAR" },
-    // { label: "Switchgear Bhima Koregaon", value: "SWITCHGEAR BHIMA KOREGAON" }
-  ],
-  "Cable": [{ label: "INOVANCE CABLE", value: "INOVANCE CABLE" }],
-  "VFD": [{ label: "INOVANCE VFD", value: "INOVANCE VFD" }],
-  "HMI": [{ label: "INOVANCE HMI", value: "INOVANCE HMI" }],
-};
-const decodedCategory = decodeURIComponent(encodedName);
+  const categoryMap = {
+    "Switch Gear": [
+      { label: "ABB Switchgear", value: "ABB DCS" },
+      { label: "Siemens Switchgear", value: "SIEMENS SWITCHGEAR" },
+      // { label: "Switchgear Bhima Koregaon", value: "SWITCHGEAR BHIMA KOREGAON" }
+    ],
+    Cable: [
+      { label: "INOVANCE CABLE", value: "INOVANCE CABLE" },
+      { label: "ABB CABLE", value: "ABB CABLE" },
+    ],
+    VFD: [
+      { label: "INOVANCE VFD", value: "INOVANCE VFD" },
+      { label: "ABB VFD", value: "ABB VFD" },
+    ],
+    HMI: [
+      { label: "INOVANCE HMI", value: "INOVANCE HMI" },
+      { label: "ABB HMI", value: "ABB HMI" },
+    ],
+    Kyland: [
+      { label: "IPC", value: "KYLAND IPC" },
+      // {label:"ABB HMI", value: "ABB HMI"}
+    ],
+    Helmholz: [{ label: "Profinet", value: "PROFINET" }],
+  };
+  const decodedCategory = decodeURIComponent(encodedName);
 
-const subcategories = categoryMap[decodedCategory] || [];
-console.log("subcategories is>>>>>>>>>",subcategories)
+  const subcategories = categoryMap[decodedCategory] || [];
+  console.log("subcategories is>>>>>>>>>", subcategories);
   const renderItem = filteredAndSearchedData
     .slice(0, visibleCount)
     .map((product, index) => {
@@ -133,9 +147,8 @@ console.log("subcategories is>>>>>>>>>",subcategories)
       const convertedPrice = convertPrice(product.price, currencyTo);
       return (
         // card Container
-        
+
         <div className=" min-h-[145px] h-[20vh] sm:h-[22vh] md:min-h-[180px] md:h-[16vh] lg:min-h-[180px] lg:h-[22vh] xl:min-h-[200px] xl:h-[18vh]  border-2 w-full md:w-full bg-white border-gray-300 px-2 py-2 rounded-lg shadow-lg  xl:shadow-xl ">
-        
           <div className="flex h-[100%] ">
             <div className="w-[30%] h-[100%]">
               <img
@@ -259,8 +272,8 @@ console.log("subcategories is>>>>>>>>>",subcategories)
           </div>
         </div>
       </div>
-       <div className="flex flex-wrap gap-3 justify-center my-4">
-  {/* {subcategories.map((sub, index) => (
+      <div className="flex flex-wrap gap-3 justify-center my-4">
+        {/* {subcategories.map((sub, index) => (
     <button
       key={index}
       onClick={() => {
@@ -277,31 +290,54 @@ console.log("subcategories is>>>>>>>>>",subcategories)
     </button>
   ))} */}
 
-{/* Ak */}
-{subcategories.map((sub, index) => (
-  <button
-    key={index}
-    onClick={() => setSelectedSubcategory(sub.value)}
-    className={`px-4 py-2 rounded-full border font-semibold ${
-      selectedSubcategory === sub.value
-        ? "bg-red-600 text-white"
-        : "bg-white text-gray-700 hover:bg-red-100"
-    }`}
-  >
-    {sub.label}
-  </button>
-))}
-  {/* Reset button */}
-  {/* <button
+        {/* Ak */}
+        {subcategories.map((sub, index) => (
+          <button
+            key={index}
+            onClick={() => setSelectedSubcategory(sub.value)}
+            className={`px-4 py-2 rounded-full border font-semibold ${
+              selectedSubcategory === sub.value
+                ? "bg-red-600 text-white"
+                : "bg-white text-gray-700 hover:bg-red-100"
+            }`}
+          >
+            {sub.label}
+          </button>
+        ))}
+        {/* Reset button */}
+        {/* <button
     onClick={() => setSelectedSubcategory(null)}
     className="px-4 py-2 rounded-full border bg-gray-200"
   >
     All
   </button> */}
-</div>
-      <div className="grid w-full 2xl:!px-48 xl:!px-40 bg-white/95  md:grid-cols-2 px-4 py-4 gap-y-4 md:gap-y-6 md:gap-x-6 md:justify-center md:items-center">
-        {renderItem}
       </div>
+      {/* <div className="grid w-full 2xl:!px-48 xl:!px-40 bg-white/95  md:grid-cols-2 px-4 py-4 gap-y-4 md:gap-y-6 md:gap-x-6 md:justify-center md:items-center">
+        {renderItem}
+      </div> */}
+
+      <div className="grid w-full 2xl:!px-48 xl:!px-40 bg-white/95 md:grid-cols-2 px-4 py-4 gap-y-4 md:gap-y-6 md:gap-x-6 md:justify-center md:items-center">
+        {filteredAndSearchedData.length === 0 ? (
+          <div className="col-span-full flex flex-col items-center justify-center text-center py-20">
+            <p className="text-xl md:text-2xl font-bold text-gray-700 mb-3">
+              Products not listed yet
+            </p>
+            <p className="text-gray-500 mb-5">
+              We couldn’t find any products in this category.
+            </p>
+
+            <button
+              onClick={() => handleContactClick(["No products available in this category"])}
+              className="bg-red-600 hover:bg-red-700 text-white px-6 py-2 rounded-lg font-semibold"
+            >
+              Contact Us
+            </button>
+          </div>
+        ) : (
+          renderItem
+        )}
+      </div>
+
       <div className="flex justify-center  text-gray-700 font-semibold text-sm md:text-base">
         Showing {Math.min(visibleCount, filterData.length)} of{" "}
         {filterData.length} products
