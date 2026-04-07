@@ -112,6 +112,73 @@ export const Subcategory = ({ toggleModal, handleContactClick }) => {
   );
 
   // AK
+  // const categoryMap = {
+  //   "Switch Gear": [
+  //     { label: "ABB Switchgear", value: "ABB DCS" },
+  //     { label: "Siemens Switchgear", value: "SIEMENS SWITCHGEAR" },
+  //     // { label: "Switchgear Bhima Koregaon", value: "SWITCHGEAR BHIMA KOREGAON" }
+  //   ],
+  //   Cable: [
+  //     { label: "INOVANCE CABLE", value: "INOVANCE CABLE" },
+  //     { label: "ABB CABLE", value: "ABB CABLE" },
+  //   ],
+  //   VFD: [
+  //     { label: "INOVANCE VFD", value: "INOVANCE VFD" },
+  //     { label: "ABB VFD", value: "ABB VFD" },
+  //   ],
+  //   HMI: [
+  //     { label: "INOVANCE HMI", value: "INOVANCE HMI" },
+  //     { label: "ABB HMI", value: "ABB HMI" },
+  //   ],
+  //   Kyland: [
+  //     { label: "IPC", value: "KYLAND IPC" },
+  //     // {label:"ABB HMI", value: "ABB HMI"}
+  //   ],
+  //   Helmholz: [{ label: "Profinet", value: "PROFINET" }],
+  // };
+
+const categoryMap = {
+  ABB: [
+    { label: "DCS", value: "ABB DCS" },
+    { label: "Switchgear", value: "ABB SWITCHGEAR" },
+    { label: "Cable", value: "ABB CABLE" },
+    { label: "VFD", value: "ABB VFD" },
+    { label: "HMI", value: "ABB HMI" },
+  ],
+
+  SIEMENS: [
+    { label: "DCS", value: "SIEMENS DCS" },
+    { label: "Switchgear", value: "SIEMENS SWITCHGEAR" },
+    { label: "Cable", value: "SIEMENS CABLE" },
+    { label: "VFD", value: "SIEMENS VFD" },
+    { label: "HMI", value: "SIEMENS HMI" },
+  ],
+
+  INOVANCE: [
+    { label: "Switchgear", value: "ABB SWITCHGEAR" },
+    { label: "VFD", value: "INOVANCE VFD" },
+    { label: "Cable", value: "INOVANCE CABLE" },
+    { label: "HMI", value: "INOVANCE HMI" },
+    { label: "PLC", value: "INOVANCE PLC" },
+    { label: "SERVO", value: "INOVANCE SERVO" },
+  ],
+
+  KLEMSAN: [
+    { label: "KLEMSAN", value: "KLEMSAN" },
+    { label: "Connectors", value: "KLEMSAN CONNECTORS" },
+  ],
+
+  KYLAND: [
+    { label: "Switchgear", value: "KYLAND SWITCHGEAR" },
+    { label: "Network", value: "KYLAND NETWORK" },
+    { label: "Industrial Ethernet", value: "KYLAND INDUSTRIAL ETHERNET" },
+  ],
+
+  HELMOLZ: [
+    { label: "Terminals", value: "HELMOLZ TERMINALS" },
+    { label: "Connectors", value: "HELMOLZ CONNECTORS" },
+  ],
+};
   const categoryMap = {
     "Switch Gear": [
       { label: "ABB Switchgear", value: "ABB DCS" },
