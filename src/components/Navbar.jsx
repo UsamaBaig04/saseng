@@ -64,6 +64,21 @@ useEffect(() => {
       navigate("/");
     }
   };
+
+  const categoriess = [
+      { id: 1, name: "Switch Gear", image: { src: "/assets/switchgear.jpg" } },
+      { id: 2, name: "Cable", image: { src: "/assets/cable.jpg" } },
+      { id: 3, name: "VFD", image: { src: "/assets/INOVANCE_VFD_26.jpg" } },
+      { id: 4, name: "HMI", image: { src: "/assets/HMI.jpg" } },
+      { id: 5, name: "Kyland", image: { src: "/assets/Kyland12.jpg" } },
+      { id: 6, name: "Helmolz", image: { src: "/assets/helmolz.png" } },
+      // { id: 7, name: "Power Systems", image: { src: "/assets/power.jpg" } },
+      // { id: 8, name: "Instrumentation", image: { src: "/assets/instruments.jpg" } },
+      // { id: 9, name: "Process Control", image: { src: "/assets/process.jpg" } },
+      // { id: 10, name: "Communication Modules", image: { src: "/assets/communication.jpg" } },
+      // { id: 11, name: "Human Machine Interface", image: { src: "/assets/hmi.jpg" } },
+      // { id: 12, name: "Variable Frequency Drives", image: { src: "/assets/drives.jpg" } },
+  ];
 //   useEffect(() => {
 //   lockScroll();
 //   return () => unlockScroll();
@@ -141,7 +156,7 @@ useEffect(() => {
                             View all products
                           </div>
                         </button>
-                        {categories.map((category, index) => (
+                        {categoriess.map((category, index) => (
                           <button
                             key={index}
                             onClick={() => {
@@ -303,7 +318,7 @@ useEffect(() => {
                     <div className="font-semibold text-sm">ALL CATEGORIES</div>
                     <div className="text-xs text-slate-500 mt-1">View all products</div>
                   </button>
-                  {categories.map((category, index) => (
+                  {categoriess.map((category, index) => (
                     <button
                       key={index}
                       onClick={() => {
