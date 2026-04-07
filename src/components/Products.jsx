@@ -3,19 +3,19 @@ import { Package, ArrowRight, Loader2 } from "lucide-react";
 import { useProducts } from "../ProductsProvider";
 import { useNavigate } from "react-router-dom";
 import { useInView } from 'react-intersection-observer';
-export const Products = () => {
+export const Products = ({handleContactClick}) => {
   const { categories, loading } = useProducts();
   const { ref, inView } = useInView({ triggerOnce: true });
   const navigate = useNavigate();
   // Mock data - replace with your actual useProducts hook
   // const loading = false; // Set to true to see loading state
   const categoriess = [
-      { id: 1, name: "Switch Gear", image: { src: "/assets/switchgear.jpg" } },
-      { id: 2, name: "Cable", image: { src: "/assets/cable.jpg" } },
-      { id: 3, name: "VFD", image: { src: "/assets/INOVANCE_VFD_26.jpg" } },
-      { id: 4, name: "HMI", image: { src: "/assets/HMI.jpg" } },
-      { id: 5, name: "Kyland", image: { src: "/assets/Kyland12.jpg" } },
-      { id: 6, name: "Helmolz", image: { src: "/assets/helmolz.png" } },
+      { id: 1, name: "ABB", image: { src: "/assets/abb.png" } },
+      { id: 2, name: "SIEMENS", image: { src: "/assets/Siemens_AG_logo.png" } },
+      { id: 3, name: "INOVANCE", image: { src: "/assets/PAM_Logo.png" } },
+      { id: 4, name: "KLEMSAN", image: { src: "/assets/Klemsan.png" } },
+      { id: 5, name: "KYLAND", image: { src: "/assets/kyland.webp" } },
+      { id: 6, name: "HELMOLZ", image: { src: "/assets/Helmholz-logo.png" } },
       // { id: 7, name: "Power Systems", image: { src: "/assets/power.jpg" } },
       // { id: 8, name: "Instrumentation", image: { src: "/assets/instruments.jpg" } },
       // { id: 9, name: "Process Control", image: { src: "/assets/process.jpg" } },
@@ -25,14 +25,37 @@ export const Products = () => {
   ];
 
   // categoryMap.js
+// const categoryMap = {
+//   "Switch Gear": [
+//     { label: "ABB Switchgear", value: "ABB DCS" },
+//     { label: "Siemens Switchgear", value: "SIEMENS SWITCHGEAR" },
+//     // { label: "Switchgear Bhima Koregaon", value: "SWITCHGEAR BHIMA KOREGAON" }
+//   ],
+//   "Cable": [{ label: "INOVANCE CABLE", value: "INOVANCE CABLE" },
+//     { label: "ABB CABLE", value: "ABB CABLE" }
+//   ],
+//   "VFD": [{ label: "INOVANCE VFD", value: "INOVANCE VFD" },
+//     {label:"ABB VFD", value: "ABB VFD"}
+//   ],
+//   "HMI": [{ label: "INOVANCE HMI", value: "INOVANCE HMI" },
+//       {label:"ABB HMI", value: "ABB HMI"}
+//   ],
+//   "Kyland": [{ label: "IPC", value: "KYLAND IPC" },
+//       // {label:"ABB HMI", value: "ABB HMI"}
+//   ],
+//    "Helhmholz": [
+//       {label:"Profinet", value: "PROFINET"}
+//   ],
+// };
+
+
 const categoryMap = {
-  "Switch Gear": ["ABB SWITCHGEAR", "SIEMENS SWITCHGEAR"],
-  "Cable": ["INOVANCE CABLE"],
-  "VFD": ["INOVANCE VFD"],
-  "HMI": ["INOVANCE HMI"],
-  "PLC": ["INOVANCE PLC"],
-  "Servo": ["INOVANCE SERVO"],
-  "Others": ["KLEMSAN", "REDLION"]
+  "ABB": ["DCS", "SWITCHGEAR", "CABLE", "VFD", "HMI"],
+  "SIEMENS": ["DCS", "SWITCHGEAR", "CABLE", "VFD", "HMI"],
+  "INOVANCE": ["VFD", "PLC", "INOVANCE SERVO", "HMI"],
+  "KLEMSAN": ["KLEMSAN TERMINALS", "KLEMSAN CONNECTORS"],
+  "KYLAND": ["KYLAND SWITCHGEAR", "KYLAND NETWORK", "KYLAND INDUSTRIAL ETHERNET"],
+  "HELMOLZ": ["HELMOLZ TERMINALS", "HELMOLZ CONNECTORS"]
 };
   // Enhanced Loading Component
   
@@ -179,12 +202,13 @@ const categoryMap = {
                 >
                   <div className="bg-white rounded-2xl shadow-lg hover:shadow-2xl overflow-hidden border border-gray-100 transition-all duration-300 group-hover:border-red-200">
                     {/* Image Container */}
-                    <div className="relative aspect-square overflow-hidden ">
-                      
+                    {/* <div className="relative aspect-square overflow-hidden "> */}
+                      <div className="relative aspect-square flex items-center justify-center bg-white overflow-hidden">
                       <img
                         src={product.image?.src || "/assets/defaultImage.jpg"}
                         alt={product.name || "Product Image"}
-                        className="w-full h-full object-cover "
+                        // className="w-full h-full object-cover "
+                        className="max-w-full max-h-full object-contain p-4"
                         onError={(e) => {
                           e.target.src = "/assets/defaultImage.jpg";
                         }}
@@ -241,7 +265,8 @@ const categoryMap = {
               Our engineering experts are ready to help you find the perfect
               industrial solution for your specific requirements.
             </p>
-            <button className="bg-white text-red-700 hover:bg-red-50 px-8 py-4 rounded-xl font-bold text-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 inline-flex items-center space-x-2">
+            <button className="bg-white text-red-700 hover:bg-red-50 px-8 py-4 rounded-xl font-bold text-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 inline-flex items-center space-x-2"
+             onClick={() => handleContactClick([""])}>
               <span>Contact Our Experts</span>
               <ArrowRight className="w-5 h-5" />
             </button>
