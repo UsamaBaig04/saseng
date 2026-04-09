@@ -66,12 +66,12 @@ useEffect(() => {
   };
 
   const categoriess = [
-      { id: 1, name: "Switch Gear", image: { src: "/assets/switchgear.jpg" } },
-      { id: 2, name: "Cable", image: { src: "/assets/cable.jpg" } },
-      { id: 3, name: "VFD", image: { src: "/assets/INOVANCE_VFD_26.jpg" } },
-      { id: 4, name: "HMI", image: { src: "/assets/HMI.jpg" } },
-      { id: 5, name: "Kyland", image: { src: "/assets/Kyland12.jpg" } },
-      { id: 6, name: "Helmolz", image: { src: "/assets/helmolz.png" } },
+      { id: 1, name: "ABB", image: { src: "/assets/switchgear.jpg" } },
+      { id: 2, name: "SIEMENS", image: { src: "/assets/cable.jpg" } },
+      { id: 3, name: "INOVANCE", image: { src: "/assets/INOVANCE_VFD_26.jpg" } },
+      { id: 4, name: "KLEMSAN", image: { src: "/assets/HMI.jpg" } },
+      { id: 5, name: "KYLAND", image: { src: "/assets/Kyland12.jpg" } },
+      { id: 6, name: "HELMHOLZ", image: { src: "/assets/helmolz.png" } },
       // { id: 7, name: "Power Systems", image: { src: "/assets/power.jpg" } },
       // { id: 8, name: "Instrumentation", image: { src: "/assets/instruments.jpg" } },
       // { id: 9, name: "Process Control", image: { src: "/assets/process.jpg" } },

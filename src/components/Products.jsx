@@ -15,7 +15,7 @@ export const Products = ({handleContactClick}) => {
       { id: 3, name: "INOVANCE", image: { src: "/assets/PAM_Logo.png" } },
       { id: 4, name: "KLEMSAN", image: { src: "/assets/Klemsan.png" } },
       { id: 5, name: "KYLAND", image: { src: "/assets/kyland.webp" } },
-      { id: 6, name: "HELMOLZ", image: { src: "/assets/Helmholz-logo.png" } },
+      { id: 6, name: "HELMHOLZ", image: { src: "/assets/Helmholz-logo.png" } },
       // { id: 7, name: "Power Systems", image: { src: "/assets/power.jpg" } },
       // { id: 8, name: "Instrumentation", image: { src: "/assets/instruments.jpg" } },
       // { id: 9, name: "Process Control", image: { src: "/assets/process.jpg" } },

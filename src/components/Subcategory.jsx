@@ -174,35 +174,35 @@ const categoryMap = {
     { label: "Industrial Ethernet", value: "KYLAND INDUSTRIAL ETHERNET" },
   ],
 
-  HELMOLZ: [
-    { label: "Terminals", value: "HELMOLZ TERMINALS" },
-    { label: "Connectors", value: "HELMOLZ CONNECTORS" },
+  HELMHOLZ: [
+    { label: "Terminals", value: "HELMHOLZ TERMINALS" },
+    { label: "Connectors", value: "HELMHOLZ CONNECTORS" },
   ],
 };
-  const categoryMap = {
-    "Switch Gear": [
-      { label: "ABB Switchgear", value: "ABB DCS" },
-      { label: "Siemens Switchgear", value: "SIEMENS SWITCHGEAR" },
-      // { label: "Switchgear Bhima Koregaon", value: "SWITCHGEAR BHIMA KOREGAON" }
-    ],
-    Cable: [
-      { label: "INOVANCE CABLE", value: "INOVANCE CABLE" },
-      { label: "ABB CABLE", value: "ABB CABLE" },
-    ],
-    VFD: [
-      { label: "INOVANCE VFD", value: "INOVANCE VFD" },
-      { label: "ABB VFD", value: "ABB VFD" },
-    ],
-    HMI: [
-      { label: "INOVANCE HMI", value: "INOVANCE HMI" },
-      { label: "ABB HMI", value: "ABB HMI" },
-    ],
-    Kyland: [
-      { label: "IPC", value: "KYLAND IPC" },
-      // {label:"ABB HMI", value: "ABB HMI"}
-    ],
-    Helmholz: [{ label: "Profinet", value: "PROFINET" }],
-  };
+  // const categoryMap = {
+  //   "Switch Gear": [
+  //     { label: "ABB Switchgear", value: "ABB DCS" },
+  //     { label: "Siemens Switchgear", value: "SIEMENS SWITCHGEAR" },
+  //     // { label: "Switchgear Bhima Koregaon", value: "SWITCHGEAR BHIMA KOREGAON" }
+  //   ],
+  //   Cable: [
+  //     { label: "INOVANCE CABLE", value: "INOVANCE CABLE" },
+  //     { label: "ABB CABLE", value: "ABB CABLE" },
+  //   ],
+  //   VFD: [
+  //     { label: "INOVANCE VFD", value: "INOVANCE VFD" },
+  //     { label: "ABB VFD", value: "ABB VFD" },
+  //   ],
+  //   HMI: [
+  //     { label: "INOVANCE HMI", value: "INOVANCE HMI" },
+  //     { label: "ABB HMI", value: "ABB HMI" },
+  //   ],
+  //   Kyland: [
+  //     { label: "IPC", value: "KYLAND IPC" },
+  //     // {label:"ABB HMI", value: "ABB HMI"}
+  //   ],
+  //   Helmholz: [{ label: "Profinet", value: "PROFINET" }],
+  // };
   const decodedCategory = decodeURIComponent(encodedName);
 
   const subcategories = categoryMap[decodedCategory] || [];
