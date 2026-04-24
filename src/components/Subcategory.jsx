@@ -317,8 +317,8 @@ const categoryMap = {
               <p>
                 <b>
                   Toll Free: 9850418036 | Email:{" "}
-                  <a href="mailto:marketing@sasengineering.in" className="">
-                    marketing@sasengineering.in
+                  <a href="mailto:eshal@sasnextgen.com" className="">
+                    eshal@sasnextgen.com
                   </a>{" "}
                   | GST Number: 27AATCS4445F1ZY
                 </b>
